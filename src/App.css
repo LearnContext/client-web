@@ -1,0 +1,25 @@
+#root {
+    --primary: theme(colors.white);
+    --secondary: theme(colors.black);
+    --special_blue: theme(colors.blue.500);
+    --special_green: theme(colors.green.500);
+    --special_orange: theme(colors.orange.500);
+    --primary_special: theme(colors.slate.300);
+    --secondary_special: theme(colors.gray.700);
+  }
+
+  *{
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Josefin Sans', sans-serif;
+    
+}
+
+
+.hover_effect:hover{
+  scale: calc(0.96);
+  transition: 0.8s;
+}
