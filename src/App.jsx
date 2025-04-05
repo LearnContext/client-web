@@ -22,6 +22,7 @@ import { AdminCourseView } from "./pages/admin/Admin-Course-View";
 import { CourseView } from "./pages/CourseView";
 import { CoursePlaylist } from "./pages/CoursePlaylist";
 import { AboutPage } from "./pages/AboutPage";
+import { FrontendPlaylist } from "./pages/courses/FrontendPlaylist";
 
 const App = () => {
 
@@ -42,7 +43,9 @@ const App = () => {
               <Route path="dashboard" element={<CoursePage />} />
               <Route path=":id/view" element={<CourseView />} />
               <Route path="playlist" element={<CoursePlaylist />} />
+              <Route path="frontend-development" element={<FrontendPlaylist />} />
             </Route>
+
             <Route path="/contest" element={<ContestPage />} />
             <Route path="/about" element={<AboutPage />} />
           </Route>

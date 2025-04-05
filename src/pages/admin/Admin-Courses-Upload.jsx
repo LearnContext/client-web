@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { BASE_URL } from "../../services/helper";
 
 export const AdminCoursesUpload = () => {
+    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+    
     const navigate = useNavigate();
     const { authorizationToken } = useAuth();
 

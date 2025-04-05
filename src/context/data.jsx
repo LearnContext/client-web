@@ -1,18 +1,20 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Loader } from "../UI/Loader";
-import { BASE_URL } from "../services/helper";
 
 // Create Data Context
 export const DataContext = createContext();
 
 // Data Provider Component
 export const DataProvider = ({ children }) => {
+    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
     // const [loading, setLoading] = useState(false);
     const [appData, setAppData] = useState(null);
     const [courseData, setCourseData] = useState([]);
     const [search, setSearch] = useState("");
-    const [saveCourseData, setSaveCourseData] = useState(localStorage.getItem("saveCourses"));
+    
+    
 
     // Fetch Application Data
     const getAppData = async () => {
@@ -71,8 +73,6 @@ export const DataProvider = ({ children }) => {
         search,
         setSearch,
         searchData,
-        saveCourseData,
-        setSaveCourseData
     };
 
     return (

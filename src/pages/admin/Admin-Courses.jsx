@@ -5,9 +5,10 @@ import { useAuth } from "../../context/auth";
 import { Loading } from "../../UI/Loading";
 import { IoReload } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { BASE_URL } from "../../services/helper";
 
 export const AdminCourses = () => {
+    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
     const [loading, setLoading] = useState(true);
     const [courses, setCourses] = useState([])
     const { authorizationToken } = useAuth();

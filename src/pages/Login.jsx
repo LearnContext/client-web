@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useAuth } from "../context/auth";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { BASE_URL } from "../services/helper";
 
 export const Login = () => {
+    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+    
     const navigate = useNavigate();
     const { storeTokenInLS } = useAuth();
 

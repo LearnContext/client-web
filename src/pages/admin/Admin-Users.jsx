@@ -4,9 +4,10 @@ import { toast } from "react-toastify";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
 import { Loading } from "../../UI/Loading";
-import { BASE_URL } from "../../services/helper";
 
 export const AdminUsers = () => {
+    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
     const [loading, setLoading] = useState(true);
     const [users, setUsers] = useState([]);
     const { authorizationToken } = useAuth();

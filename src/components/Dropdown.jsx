@@ -24,11 +24,11 @@ const DropdownMenu = () => {
     return (
         <div className="relative inline-block text-left sm:hidden">
             <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? <X size={24} className="text-primary cursor-pointer" /> : <LuMenu size={24} className="text-primary cursor-pointer" />}
+                {isOpen ? <X size={24} className="text-special_green cursor-pointer" /> : <LuMenu size={24} className="text-special_blue cursor-pointer" />}
             </button>
 
             {isOpen && (
-                <div ref={dropdownRef} className="absolute z-50 -right-1 mt-4 w-48 rounded-md shadow-lg bg-special_blue ring-1 ring-black ring-opacity-5">
+                <div ref={dropdownRef} className="absolute z-50 -right-1 mt-5 w-48 rounded-md shadow-lg bg-slate-50 ring-1 ring-black ring-opacity-5">
                     <div className="gap-4 bg-slate flex flex-col p-4 px-4 ~text-sm/lg" role="menu">
                         {/* <button onClick={toggleMenu} className="w-4 self-end"><IoClose className="text-gray-100"/></button> */}
                         <Navbar />

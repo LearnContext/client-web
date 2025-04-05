@@ -1,126 +1,119 @@
 import { GoArrowRight } from "react-icons/go";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "../context/auth";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { BASE_URL } from "../services/helper";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Contact = () => {
-  const navigate = useNavigate();
-  const { user } = useAuth();
+    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+    
+    const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
-  const [contact, setContact] = useState({
-    fullname: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+    const [loading, setLoading] = useState(false);
+    const [userData, setUserData] = useState(true);
+    const { user } = useAuth();
 
-  useEffect(() => {
-    if (user) {
-      setContact({
-        fullname: user.fullname || "",
-        email: user.email || "",
-        phone: String(user.phone) || "",
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
+    const defaultUserData = {
+        fullname: `${user.fullname}`,
+        email: user.email,
+        phone: String(user.phone),
         message: "",
-      });
+    };
+
+    const [contact, setContact] = useState({
+        fullname: "",
+        email: "",
+        phone: "",
+        message: "",
+    });
+
+    if (userData && user) {
+        setContact(defaultUserData);
+        setUserData(false);
     }
-  }, [user]);
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setContact({ ...contact, [name]: value })
+    };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setContact((prev) => ({ ...prev, [name]: value }));
-  };
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        // console.log(contact);
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+        try {
+            const URL = `${BASE_URL}/api/form/contact`;
+            const response = await fetch(URL, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(contact)
+            });
 
-    try {
-      const response = await fetch(`${BASE_URL}/api/form/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contact),
-      });
+            const res_data = await response.json();
+            // console.log("response fron server for contact ", res_data);
+            setLoading(false);
+            
+            if (response.ok) {
+                setContact(defaultUserData);
+                toast.success(res_data.message);
+            } else {
+                toast.error(res_data.extraDetail);
+            }
+        } catch (error) {
+            setLoading(false);
+            console.log(error);
+        }
+    };
 
-      const res_data = await response.json();
-      setLoading(false);
-
-      if (response.ok) {
-        toast.success(res_data.message);
-        setContact({ fullname: user.fullname || "", email: user.email || "", phone: String(user.phone) || "", message: "" });
-      } else {
-        toast.error(res_data.extraDetail || "Something went wrong. Try again.");
-      }
-    } catch (error) {
-      setLoading(false);
-      toast.error("Failed to send message. Please check your internet connection.");
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="w-full h-screen flex justify-center items-center">
-        <p className="text-lg text-gray-600">Uploading...</p>
-      </div>
-    );
-  }
-
-  return (
-    <section className="flex flex-col gap-10 items-center p-6">
-      <div className="flex justify-between w-full sm:w-96">
-        <div>
-          <h1 className="text-xl font-semibold text-gray-900">Contact Us</h1>
-          <NavLink to="/login" className="text-sm text-gray-600">
-            or <span className="text-blue-600 font-medium">Login to your account</span>
-          </NavLink>
+    // loading after fetching data
+    if (loading) {
+        return <div className="w-full h-lvh flex justify-center items-center">
+            Uploading...
         </div>
-        <button onClick={handleGoBack} className="p-2 text-red-500 text-xl cursor-pointer">
-          <GoArrowRight />
-        </button>
-      </div>
+    }
 
-      <form onSubmit={handleFormSubmit} className="w-full sm:w-96">
-        <ul className="space-y-4">
-          <li className="border p-2 rounded-md">
-            <label htmlFor="fullname" className="text-gray-500 block">
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <input type="text" name="fullname" id="fullname" value={contact.fullname} onChange={handleInputChange} required autoComplete="off" className="w-full outline-none text-gray-700 font-medium" />
-          </li>
+    return <section className="flex flex-col gap-10 items-center ~p-4/12">
+        <div className="flex justify-between w-full sm:w-96">
+            <div>
+                <h1 className=" text-xl">Contact Us</h1>
+                <NavLink to="/login" className="text-sm  ">or <p className="text-special_blue">login to your account</p></NavLink>
+            </div>
 
-          <li className="border p-2 rounded-md">
-            <label htmlFor="email" className="text-gray-500 block">
-              Email <span className="text-red-500">*</span>
-            </label>
-            <input type="email" name="email" id="email" value={contact.email} onChange={handleInputChange} required autoComplete="off" className="w-full outline-none text-gray-700 font-medium" />
-          </li>
+            <div className="p-2">
+                <GoArrowRight onClick={handleGoBack} className="text-red-500 text-xl cursor-pointer"/>
+            </div>
+        </div>
 
-          <li className="border p-2 rounded-md">
-            <label htmlFor="phone" className="text-gray-500 block">
-              Phone <span className="text-red-500">*</span>
-            </label>
-            <input type="number" name="phone" id="phone" value={contact.phone} onChange={handleInputChange} required autoComplete="off" className="w-full outline-none text-gray-700 font-medium" />
-          </li>
+        <form onSubmit={handleFormSubmit} className="sm:flex w-full sm:w-96">
+            <ul>
+                <li className="border border-b-0 p-2 flex flex-col justify-start">
+                    <label htmlFor="fullname" className=" text-gray-400 text-nowrap">Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input value={contact.fullname} onChange={handleInputChange} required autoComplete="off" type="name" name="fullname" id="fullname" className="outline-none font-medium text-gray-600 sm:w-96" />
+                </li>
+                <li className="border border-b-0 p-2 flex flex-col justify-start">
+                    <label htmlFor="email" className=" text-gray-400">Email <span className="text-red-500">*</span></label>
+                    <input value={contact.email} onChange={handleInputChange} required autoComplete="off" type="email" name="email" id="email" className="outline-none font-medium text-gray-600" />
+                </li>
+                <li className="border border-b-0 p-2 flex flex-col justify-start">
+                    <label htmlFor="phone" className=" text-gray-400 text-nowrap">Phone <span className="text-red-500">*</span></label>
+                    <input value={contact.phone} onChange={handleInputChange} required autoComplete="off" maxLength={1} type="number" name="phone" id="phone" className="outline-none font-medium text-gray-600" />
+                </li>
+                <li className="border p-2 flex flex-col justify-start">
+                    <label htmlFor="messgae" className=" text-gray-400">Comment <span className="text-red-500">*</span></label>
+                    <textarea value={contact.message} onChange={handleInputChange} required autoFocus autoComplete="off" name="message" id="message" rows={5} className="scroll_yh outline-none font-medium text-gray-600"></textarea>
+                </li>
 
-          <li className="border p-2 rounded-md">
-            <label htmlFor="message" className="text-gray-500 block">
-              Comment <span className="text-red-500">*</span>
-            </label>
-            <textarea name="message" id="message" value={contact.message} onChange={handleInputChange} required rows={5} className="w-full outline-none text-gray-700 font-medium resize-none"></textarea>
-          </li>
-
-          <button type="submit" className="w-full mt-4 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-all">
-            Send Message
-          </button>
-        </ul>
-      </form>
+                <button type="submit" className="w-full mt-4 p-4 bg-special_blue text-white hover:bg-blue-600">Continue</button>
+            </ul>
+        </form>
     </section>
-  );
-};
+}

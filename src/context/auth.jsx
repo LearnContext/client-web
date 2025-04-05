@@ -2,10 +2,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 import axios from "axios";
-import { BASE_URL } from "../services/helper";
 
 export const AuthProvider = ({ children }) => {
-    // const BASE_URL = import.meta.env.VITE_BASE_URL;
+    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+    
     const [user, setUser] = useState("");
     const [token, setToken] = useState(localStorage.getItem('token'));
     const authorizationToken = `Bearer ${token}`;

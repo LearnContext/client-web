@@ -1,4 +1,5 @@
 import { IoReload } from "react-icons/io5"
+import { NavLink } from "react-router-dom"
 
 export const CoursePlaylist = () => {
     return (
@@ -6,7 +7,7 @@ export const CoursePlaylist = () => {
             <p className=" ~text-lg/xl ~pb-4/8">All Courses</p>
             <div className="overflow-y-scroll w-full h-lvh">
                 <div className="flex flex-wrap justify-start items-center sm:flex-row ~gap-4/12">
-                    <div className="w-full sm:w-auto flex flex-col gap-3 sm:p-2 border rounded-xl overflow-hidden">
+                    <NavLink to="/courses/frontend-development" className="w-full sm:w-auto flex flex-col gap-3 sm:p-2 border rounded-xl overflow-hidden">
                         <div className="w-full sm:~w-36/64 ~h-40/48 border overflow-hidden rounded-xl">
                             <img src="/basic_web.png" alt="react native dev" className="w-full h-full object-cover" />
                         </div>
@@ -15,7 +16,7 @@ export const CoursePlaylist = () => {
                             <p className="line-clamp-1 ~text-sm/xl font-semibold">Frontend Development</p>
                             <p className="text-sm text-gray-600 font-mono line-clamp-1 " title="HTML + CSS + JavaScript + Projects">Learn: HTML + CSS + JavaScript + Projects</p>
                         </div>
-                    </div>
+                    </NavLink>
 
                     <div className="w-full sm:w-auto flex flex-col gap-3 sm:p-2 border rounded-xl overflow-hidden">
                         <div className="w-full sm:~w-36/64 ~h-40/48 border overflow-hidden rounded-xl">

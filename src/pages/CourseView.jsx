@@ -6,9 +6,10 @@ import { RxCross1 } from "react-icons/rx";
 import { GoArrowRight } from "react-icons/go";
 import axios from "axios";
 import { Loading } from "../UI/Loading";
-import { BASE_URL } from "../services/helper";
 
 export const CourseView = () => {
+    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+    
     const navigate = useNavigate();
 
     const handleGoBack = () => {

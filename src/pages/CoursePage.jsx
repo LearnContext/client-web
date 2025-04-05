@@ -5,14 +5,7 @@ import { useData } from "../context/data";
 import { Link } from "react-router-dom";
 
 export const CoursePage = () => {
-    const { search, setSearch, searchData, setSaveCourseData, saveCourseData } = useData();
-
-    // // save the course on save button
-    // const saveCourse = async () => {
-    //     setLoading(true);
-    //     getSingleCourseData();
-    //     setSaveCourseData([...saveCourseData, courseData]);
-    // }
+    const { search, setSearch, searchData } = useData();
 
     return <>
         <section className="w-full flex flex-col">
@@ -28,7 +21,7 @@ export const CoursePage = () => {
                 </form>
             </div>
 
-            <div className="overflow-y-scroll w-full h-lvh border ~p-4/12">
+            <div className="overflow-y-scroll w-full h-lvh border-y ~p-4/12">
                 <div className="flex flex-wrap justify-start items-center sm:flex-row ~gap-4/12">
                     {
                         searchData.map((course, index) => {
@@ -48,8 +41,6 @@ export const CoursePage = () => {
 
                                     <div className="flex gap-2">
                                         <Link to={`/courses/${_id}/view`} className=" w-full p-2 bg-blue-500 hover:bg-blue-600 rounded text-primary text-center ~text-xs/sm">View</Link>
-                                        
-                                        <button className=" w-full p-2 bg-green-500 hover:bg-green-600 rounded text-primary ~text-xs/sm">Save</button>
                                     </div>
                                 </div>
                             </div>

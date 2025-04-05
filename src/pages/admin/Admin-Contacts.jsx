@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/auth";
 import { Loading } from "../../UI/Loading";
-import { BASE_URL } from "../../services/helper";
 
 export const AdminContacts = () => {
+    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+    
     const [loading, setLoading] = useState(true);
     const [contacts, setContacts] = useState([])
     const { authorizationToken } = useAuth();
