@@ -18,7 +18,7 @@ export const AboutPage = () => {
                         className="~w-32/40 hover_effect m-auto"
                         whileHover={{ scale: 1.1 }}
                     />
-                    Welcome to <span className="text-blue-600">LearnContext</span>
+                    Welcome to <span className="text-blue-600">Learn<span className="text-green-500">Context</span></span>
                 </motion.h2>
                 <motion.p 
                     className="text-lg text-gray-700 max-w-3xl mx-auto mb-10"

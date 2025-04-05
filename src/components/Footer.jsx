@@ -15,8 +15,11 @@ export const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 ~gap-8/40">
                     {/* Brand Info */}
                     <div>
-                        <h2 className="text-2xl font-bold flex items-end text-special_blue">
-                            <span className="mr-2"><img src="/logo/LearnContext_dark.svg" alt="LearnContext" className="w-16 hover_effect" /></span> LearnContext
+                        <h2 className="text-3xl font-bold flex items-center text-special_blue">
+                            <div className="mr-2 my-4">
+                                <img src="/logo/logo.svg" alt="LearnContext" className="w-10 hover_effect" />
+                            </div> 
+                            Learn<span className="text-green-500">Context</span>
                         </h2>
                         <p className="text-sm mt-3 leading-relaxed">
                             LearnContext is a crowdsourced learning platform designed to revolutionize
@@ -81,7 +84,7 @@ export const Footer = () => {
                             Have questions or feedback? Reach out to us anytime. We’re here to help!
                         </p>
                         <p className="mt-3 flex items-center">
-                            <IoLocationSharp size={20} color="green"/> <span className="ml-2">Bhilai, Chhattisgarh, India</span>
+                            <IoLocationSharp size={20} color="green" /> <span className="ml-2">Bhilai, Chhattisgarh, India</span>
                         </p>
                         <p className="mt-2 flex items-center">
                             ✉️ <a href="mailto:hello@LearnContext.in" className="ml-2 text-blue-600">

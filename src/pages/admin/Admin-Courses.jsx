@@ -78,7 +78,7 @@ export const AdminCourses = () => {
                                         </div>
                                         <div className="flex flex-col justify-between gap-2 p-2 w-3/6 sm:~w-36/64">
                                             <Link to={`/admin/course/${_id}/view`} className="flex flex-col gap-0.5">
-                                                <p className="line-clamp-1 ~text-sm/xl font-semibold">{title}</p>
+                                                <p className="line-clamp-2 text-sm font-semibold">{title}</p>
                                                 <p className="text-xs text-green-600">{duration}</p>
                                                 <p className=" ~text-xs/sm">{lecturer}</p>
                                             </Link>

@@ -130,7 +130,7 @@ export const AdminCourseUpdate = () => {
                         <li className="border border-b-0 p-2 flex flex-col justify-start">
                             <label htmlFor="url" className="font-semibold text-gray-400 text-nowrap">URL <span className="text-red-500">*</span>
                             </label>
-                            <input value={courseData.url} onChange={handleInputChange} required autoFocus autoComplete="off" type="text" name="url" id="url" className="outline-none font-semibold text-gray-600 sm:w-96" />
+                            <textarea rows={2} value={courseData.url} onChange={handleInputChange} required autoFocus autoComplete="off" type="text" name="url" id="url" className="outline-none font-semibold text-gray-600 sm:w-96" />
                         </li>
 
                         <li className="border border-b-0 p-2 flex flex-col justify-start">
@@ -142,7 +142,7 @@ export const AdminCourseUpdate = () => {
                         <li className="border p-2 flex flex-col justify-start">
                             <label htmlFor="title" className="font-semibold text-gray-400 text-nowrap">Title <span className="text-red-500">*</span>
                             </label>
-                            <input value={courseData.title} onChange={handleInputChange} required autoComplete="off" type="text" name="title" id="title" className="outline-none font-semibold text-gray-600 sm:w-96" />
+                            <textarea rows={2} value={courseData.title} onChange={handleInputChange} required autoComplete="off" type="text" name="title" id="title" className="outline-none font-semibold text-gray-600 sm:w-96" />
                         </li>
 
                         <li className="border border-b-0 p-2 flex flex-col justify-start">
