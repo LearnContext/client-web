@@ -17,17 +17,23 @@ export const AdminCoursesUpload = () => {
         navigate(-1);
     };
 
+    const currentDate = new Date().toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+    });
+
     const defaultCourseData = {
         url: "",
         name: "",
         title: "",
         description: "",
         duration: "",
-        language: "",
+        language: "HINGLISH",
         lecturer: "",
-        price: "",
-        update: "",
-        offer: "",
+        price: "Free",
+        update: currentDate,
+        offer: "Free",
     };
 
     const [course, setCourse] = useState(defaultCourseData);
@@ -105,7 +111,7 @@ export const AdminCoursesUpload = () => {
                 <li className="border border-b-0 p-2 flex flex-col justify-start">
                     <label htmlFor="description" className="font-semibold text-gray-400 text-nowrap">Description <span className="text-red-500">*</span>
                     </label>
-                    <input value={course.description} onChange={handleInputChange} required autoComplete="off" type="text" name="description" id="description" className="outline-none font-semibold text-gray-600 sm:w-96" />
+                    <textarea rows={7} value={course.description} onChange={handleInputChange} required autoComplete="off" type="text" name="description" id="description" className="outline-none font-semibold text-gray-600 sm:w-96" />
                 </li>
 
                 <li className="border p-2 flex flex-col justify-start">

@@ -148,7 +148,7 @@ export const AdminCourseUpdate = () => {
                         <li className="border border-b-0 p-2 flex flex-col justify-start">
                             <label htmlFor="description" className="font-semibold text-gray-400 text-nowrap">Description <span className="text-red-500">*</span>
                             </label>
-                            <input value={courseData.description} onChange={handleInputChange} required autoComplete="off" type="text" name="description" id="description" className="outline-none font-semibold text-gray-600 sm:w-96" />
+                            <textarea rows={7} value={courseData.description} onChange={handleInputChange} required autoComplete="off" type="text" name="description" id="description" className="outline-none font-semibold text-gray-600 sm:w-96" />
                         </li>
 
                         <li className="border p-2 flex flex-col justify-start">

@@ -23,10 +23,10 @@ export const FrontendPlaylist = () => {
 
             <div className="overflow-y-scroll w-full h-lvh border-y ~p-4/12">
                 <div className="flex flex-wrap justify-start items-center sm:flex-row ~gap-4/12">
-                    { 
-                     
-                     existVideo
-                            .filter((course) => course.name.toLowerCase().includes("system"))
+                    {
+
+                        existVideo
+                            .filter((course) => course.name.toLowerCase().includes("frontend development"))
                             .map((course, index) => {
                                 const { _id, url, title, duration } = course;
 
