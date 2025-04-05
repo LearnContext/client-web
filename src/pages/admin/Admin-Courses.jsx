@@ -5,6 +5,7 @@ import { useAuth } from "../../context/auth";
 import { Loading } from "../../UI/Loading";
 import { IoReload } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { DummyCourses } from "../../UI/DummyCourses";
 
 export const AdminCourses = () => {
     const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
@@ -64,12 +65,12 @@ export const AdminCourses = () => {
         <section className="w-full max-h-screen overflow-auto ~p-4/12">
             <p className="~text-lg/xl font-semibold pb-4">Admin Courses Data</p>
             {
-                loading ? <Loading /> : (
+                loading ? <DummyCourses/> : (
                     <div className="overflow-y-scroll w-full h-lvh ">
                         <div className="flex flex-wrap justify-start items-center sm:flex-row ~gap-4/12">
                             {
                                 courses.map((course, index) => {
-                                    const { _id, url, name, duration, lecturer } = course;
+                                    const { _id, url, title, duration, lecturer } = course;
 
                                     return <div key={index} className="flex sm:flex-col gap-3 sm:p-2 border rounded-xl overflow-hidden">
                                         <div className="w-3/6 sm:~w-36/64 ~h-28/48 border  overflow-hidden rounded-xl">
@@ -77,7 +78,7 @@ export const AdminCourses = () => {
                                         </div>
                                         <div className="flex flex-col justify-between gap-2 p-2 w-3/6 sm:~w-36/64">
                                             <Link to={`/admin/course/${_id}/view`} className="flex flex-col gap-0.5">
-                                                <p className="line-clamp-1 ~text-sm/xl font-semibold">{name}</p>
+                                                <p className="line-clamp-1 ~text-sm/xl font-semibold">{title}</p>
                                                 <p className="text-xs text-green-600">{duration}</p>
                                                 <p className=" ~text-xs/sm">{lecturer}</p>
                                             </Link>

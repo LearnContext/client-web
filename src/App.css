@@ -9,7 +9,7 @@
   }
 
   *{
-    scrollbar-width: none;
+    /* scrollbar-width: none; */
     scroll-behavior: smooth;
   }
 

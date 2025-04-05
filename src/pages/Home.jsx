@@ -7,6 +7,7 @@ import { FaFeatherPointed } from "react-icons/fa6";
 import { FaArrowRight, FaLaptopCode, FaMobileAlt, FaServer, FaRobot, FaGlobe, FaDatabase } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
+import { DummyCourses } from "../UI/DummyCourses";
 
 export const Home = () => {
     const { courseData } = useData();
@@ -83,15 +84,15 @@ export const Home = () => {
             <div className="flex flex-col justify-center items-center sm:flex-row ~gap-8/20">
                 {
                     courseData.length === 0 ?
-                        null : (
+                        <DummyCourses/> : (
                             <>
                                 <Link to={`/courses/${courseData[courseData.length - 1]._id}/view`} className="flex flex-col gap-4">
                                     <div className="hover_effect ~w-48/80 ~h-36/52 border overflow-hidden rounded-xl">
                                         <iframe src={courseData[courseData.length - 1].url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
                                     </div>
                                     <div className="flex flex-col gap-2 ~w-48/80">
-                                        <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 1].name}</p>
-                                        <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 1].title}</p>
+                                        <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 1].title}</p>
+                                        <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 1].description}</p>
                                     </div>
                                 </Link>
 
@@ -100,8 +101,8 @@ export const Home = () => {
                                         <iframe src={courseData[courseData.length - 2].url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
                                     </div>
                                     <div className="flex flex-col gap-2 ~w-48/80">
-                                        <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 2].name}</p>
-                                        <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 2].title}</p>
+                                        <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 2].title}</p>
+                                        <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 2].description}</p>
                                     </div>
                                 </Link>
 
@@ -110,8 +111,8 @@ export const Home = () => {
                                         <iframe src={courseData[courseData.length - 3].url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
                                     </div>
                                     <div className="flex flex-col gap-2 ~w-48/80 ">
-                                        <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 3].name}</p>
-                                        <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 3].title}</p>
+                                        <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 3].title}</p>
+                                        <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 3].description}</p>
                                     </div>
                                 </Link>
                             </>
@@ -202,19 +203,19 @@ export const Home = () => {
             <h2 className="text-2xl font-semibold text-gray-900 mb-8">Our Growing Community</h2>
             <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-blue-800 font-semibold">
                 <div>
-                    <p className="text-3xl">50K+</p>
+                    <p className="text-3xl">40+</p>
                     <p className="text-sm">Active Learners</p>
                 </div>
                 <div>
-                    <p className="text-3xl">120+</p>
+                    <p className="text-3xl">5+</p>
                     <p className="text-sm">Courses Offered</p>
                 </div>
                 <div>
-                    <p className="text-3xl">300+</p>
+                    <p className="text-3xl">10+</p>
                     <p className="text-sm">Projects Built</p>
                 </div>
                 <div>
-                    <p className="text-3xl">4.9/5</p>
+                    <p className="text-3xl">4.2/5</p>
                     <p className="text-sm">Average Rating</p>
                 </div>
             </div>
@@ -226,9 +227,9 @@ export const Home = () => {
             <p className="text-gray-600 mb-8">Follow our structured learning paths to achieve your dream job.</p>
             <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
                 {[
-                    { title: "Frontend Development", image: "basic_web.png" },
-                    { title: "Backend Development", image: "backend_node.png" },
-                    { title: "React Native", image: "react_native_dev.png" },
+                    { title: "Frontend Development", image: "/courses/basic_web.png" },
+                    { title: "Backend Development", image: "/courses/backend_node.png" },
+                    { title: "React Native", image: "/courses/react_native_dev.png" },
                 ].map((path, i) => (
                     <Link key={i} to={`/courses/${path.title.toLowerCase().replace(" ", "-")}`} className="group rounded-xl overflow-hidden shadow hover:shadow-lg transition">
                         <img src={path.image} alt={path.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />

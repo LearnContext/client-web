@@ -33,7 +33,6 @@ export const CourseView = () => {
 
     const params = useParams();
     const { authorizationToken } = useAuth();
-    const { saveCourseData, setSaveCourseData } = useData();
 
     // get single course data 
     const getSingleCourseData = async () => {

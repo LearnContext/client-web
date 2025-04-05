@@ -26,7 +26,7 @@ export const CoursePage = () => {
                     {
                         searchData.map((course, index) => {
 
-                            const { _id, url, name, duration, lecturer } = course;
+                            const { _id, url, title, duration, lecturer } = course;
 
                             return <div key={index} className="flex sm:flex-col gap-3 sm:p-2 border rounded-xl overflow-hidden">
                                 <div className="w-3/6 sm:~w-36/64 ~h-28/48 border overflow-hidden rounded-xl">
@@ -34,7 +34,7 @@ export const CoursePage = () => {
                                 </div>
                                 <div className="flex flex-col justify-between gap-2 p-2 w-3/6 sm:~w-36/64">
                                     <Link to={`/courses/${_id}/view`} className="flex flex-col gap-0.5">
-                                        <p className="line-clamp-1 ~text-sm/xl font-semibold">{name}</p>
+                                        <p className="line-clamp-1 ~text-sm/xl font-semibold">{title}</p>
                                         <p className="text-xs text-green-600">{duration}</p>
                                         <p className=" ~text-xs/sm">{lecturer}</p>
                                     </Link>
