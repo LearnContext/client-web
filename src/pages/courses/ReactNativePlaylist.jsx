@@ -4,10 +4,10 @@ import { IoCaretDownSharp, IoReload } from "react-icons/io5";
 import { useData } from "../../context/data";
 import { Link } from "react-router-dom";
 
-export const FrontendPlaylist = () => {
+export const ReactNativePlaylist = () => {
     const { search, setSearch, searchData, courseData } = useData();
 
-    const existVideo = searchData || courseData;
+    const existVideo = courseData || searchData
     return <>
         <section className="w-full flex flex-col">
             <div className="w-full ~h-14/20 flex justify-between items-center gap-2 ~p-4/8 ">
@@ -27,7 +27,7 @@ export const FrontendPlaylist = () => {
                     {
 
                         existVideo
-                            .filter((course) => course.name.toLowerCase().includes("frontend development"))
+                            .filter((course) => course.name.toLowerCase().includes("react native"))
                             .map((course, index) => {
                                 const { _id, url, title, duration } = course;
 

@@ -5,7 +5,9 @@ import { useData } from "../context/data";
 import { Link } from "react-router-dom";
 
 export const CoursePage = () => {
-    const { search, setSearch, searchData } = useData();
+    const { search, setSearch, searchData, courseData } = useData();
+
+    const existVideo = searchData || courseData;
 
     return <>
         <section className="w-full flex flex-col">
@@ -14,7 +16,7 @@ export const CoursePage = () => {
                     <HiOutlineAdjustmentsHorizontal />filter<IoCaretDownSharp />
                 </div> */}
                 <span></span>
-                
+
                 <form className="border p-2 px-4 flex justify-between items-center gap-1 rounded w-full sm:w-2/5 ~text-xs/lg">
                     <input onChange={(e) => setSearch(e.target.value)} value={search} autoFocus type="search" name="search" id="search" placeholder="Search cources" className="outline-none text-secondary w-full bg-transparent" />
                     <button type="submit"><BsSearch className="text-secondary" /></button>
@@ -24,19 +26,21 @@ export const CoursePage = () => {
             <div className="overflow-y-scroll w-full h-lvh border-y ~p-4/12">
                 <div className="flex flex-wrap justify-start items-center sm:flex-row ~gap-4/12">
                     {
-                        searchData.map((course, index) => {
+                        existVideo.map((course, index) => {
 
                             const { _id, url, title, duration, lecturer } = course;
 
                             return <div key={index} className="flex sm:flex-col gap-3 sm:p-2 border rounded-xl overflow-hidden">
-                                <div className="w-3/6 sm:~w-36/64 ~h-28/48 border overflow-hidden rounded-xl">
+                                <div className="w-3/6 sm:~w-36/64 ~h-32/48 border overflow-hidden rounded-xl">
                                     <iframe src={url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
                                 </div>
                                 <div className="flex flex-col justify-between gap-2 p-2 w-3/6 sm:~w-36/64">
-                                    <Link to={`/courses/${_id}/view`} className="flex flex-col gap-0.5">
+                                    <Link to={`/admin/course/${_id}/view`} className="flex flex-col ~gap-2/4">
                                         <p className="line-clamp-2 text-sm font-semibold">{title}</p>
-                                        <p className="text-xs text-green-600">{duration}</p>
-                                        <p className=" ~text-xs/sm">{lecturer}</p>
+                                        <div className="flex justify-between items-center ~gap-1/4">
+                                            <p className="line-clamp-1 ~text-xs/sm">{lecturer}</p>
+                                            <p className="text-sm text-green-600 font-mono">{duration}</p>
+                                        </div>
                                     </Link>
 
                                     <div className="flex gap-2">

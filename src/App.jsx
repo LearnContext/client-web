@@ -23,6 +23,8 @@ import { CourseView } from "./pages/CourseView";
 import { CoursePlaylist } from "./pages/CoursePlaylist";
 import { AboutPage } from "./pages/AboutPage";
 import { FrontendPlaylist } from "./pages/courses/FrontendPlaylist";
+import { BackendPlaylist } from "./pages/courses/BackendPlaylist";
+import { ReactNativePlaylist } from "./pages/courses/ReactNativePlaylist";
 
 const App = () => {
 
@@ -44,6 +46,10 @@ const App = () => {
               <Route path=":id/view" element={<CourseView />} />
               <Route path="playlist" element={<CoursePlaylist />} />
               <Route path="frontend-development" element={<FrontendPlaylist />} />
+              <Route path="backend-development" element={<BackendPlaylist />} />
+              <Route path="react-native" element={<ReactNativePlaylist />} />
+              {/* <Route path="frontend-development" element={<FrontendPlaylist />} />
+              <Route path="frontend-development" element={<FrontendPlaylist />} /> */}
             </Route>
 
             <Route path="/contest" element={<ContestPage />} />

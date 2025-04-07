@@ -4,10 +4,10 @@ import { IoCaretDownSharp, IoReload } from "react-icons/io5";
 import { useData } from "../../context/data";
 import { Link } from "react-router-dom";
 
-export const FrontendPlaylist = () => {
+export const BackendPlaylist = () => {
     const { search, setSearch, searchData, courseData } = useData();
 
-    const existVideo = searchData || courseData;
+    const existVideo = courseData || searchData
     return <>
         <section className="w-full flex flex-col">
             <div className="w-full ~h-14/20 flex justify-between items-center gap-2 ~p-4/8 ">
@@ -25,15 +25,14 @@ export const FrontendPlaylist = () => {
             <div className="overflow-y-scroll w-full h-lvh border-y ~p-4/12">
                 <div className="flex flex-wrap justify-start items-center sm:flex-row ~gap-4/12">
                     {
-
                         existVideo
-                            .filter((course) => course.name.toLowerCase().includes("frontend development"))
+                            .filter((course) => course.name.toLowerCase().includes("backend development"))
                             .map((course, index) => {
                                 const { _id, url, title, duration } = course;
 
                                 return (
                                     <div key={index} className="flex sm:flex-col gap-3 sm:p-2 border rounded-xl overflow-hidden">
-                                        <div className="w-3/6 sm:~w-36/64 ~h-32/48 border overflow-hidden rounded-xl">
+                                        <div className="w-3/6 sm:~w-32/64 ~h-32/48 border overflow-hidden rounded-xl">
                                             <iframe src={url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
                                         </div>
                                         <div className="flex flex-col justify-between gap-2 p-2 w-3/6 sm:~w-36/64">
