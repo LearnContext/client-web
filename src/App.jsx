@@ -25,6 +25,9 @@ import { AboutPage } from "./pages/AboutPage";
 import { FrontendPlaylist } from "./pages/courses/FrontendPlaylist";
 import { BackendPlaylist } from "./pages/courses/BackendPlaylist";
 import { ReactNativePlaylist } from "./pages/courses/ReactNativePlaylist";
+import { ReactPlaylist } from "./pages/courses/ReactPlaylist";
+import { MernPlaylist } from "./pages/courses/MernPlaylist";
+import { PythonPlaylist } from "./pages/courses/PythonPlaylist";
 
 const App = () => {
 
@@ -48,8 +51,9 @@ const App = () => {
               <Route path="frontend-development" element={<FrontendPlaylist />} />
               <Route path="backend-development" element={<BackendPlaylist />} />
               <Route path="react-native" element={<ReactNativePlaylist />} />
-              {/* <Route path="frontend-development" element={<FrontendPlaylist />} />
-              <Route path="frontend-development" element={<FrontendPlaylist />} /> */}
+              <Route path="learn-react" element={<ReactPlaylist />} />
+              <Route path="mern" element={<MernPlaylist />} />
+              <Route path="python-language" element={<PythonPlaylist />} />
             </Route>
 
             <Route path="/contest" element={<ContestPage />} />

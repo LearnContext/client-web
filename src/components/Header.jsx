@@ -7,7 +7,7 @@ export const Header = () => {
     return (
         <header className=" w-full ~h-16/24 ~p-2/8 flex justify-between items-center bg-slate-50 border-b">
             <NavLink to="/" className="flex items-center ~gap-1/2">
-                <img src="/logo/logo.svg" alt="LearnContext" id="logo" className="~w-6/8  hover_effect" />
+                <img src="/logo/logo.svg" alt="LearnContext" id="logo" className="~w-5/7  hover_effect" />
                 <p className="font-semibold ~text-lg/2xl text-blue-500 ">Learn<span className="text-green-500">Context</span></p>
             </NavLink>
             <nav className="flex flex-row justify-between items-center ~gap-4/8">

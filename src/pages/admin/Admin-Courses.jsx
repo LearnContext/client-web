@@ -73,8 +73,8 @@ export const AdminCourses = () => {
     }, [])
 
     return <>
-        <section className="w-full max-h-screen ">
-            <div className="w-full ~h-14/20 flex justify-between items-center gap-2 ~p-4/8 ">
+        <section className="w-full flex flex-col">
+            <div className="w-full flex flex-col justify-between items-start sm:items-center gap-2 ~p-4/8 sm:flex-row  ">
                 <p className="~text-lg/xl font-semibold pb-4">Admin Courses Data</p>
 
                 <form className="border p-2 px-4 flex justify-between items-center gap-1 rounded w-full sm:w-2/5 ~text-xs/lg">

@@ -15,9 +15,9 @@ export const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 ~gap-8/40">
                     {/* Brand Info */}
                     <div>
-                        <h2 className="text-3xl font-bold flex items-center text-special_blue">
+                        <h2 className="~text-xl/3xl font-bold flex items-center text-special_blue">
                             <div className="mr-2 my-4">
-                                <img src="/logo/logo.svg" alt="LearnContext" className="w-10 hover_effect" />
+                                <img src="/logo/logo.svg" alt="LearnContext" className="~w-6/10 hover_effect" />
                             </div> 
                             Learn<span className="text-green-500">Context</span>
                         </h2>
@@ -91,11 +91,11 @@ export const Footer = () => {
                                 hello@LearnContext.in
                             </a>
                         </p>
-                        <p className="mt-2 flex items-center">
+                        {/* <p className="mt-2 flex items-center">
                             ☎️ <a href="tel:+91XXXXXXXXXX" className="ml-2 text-blue-600">
                                 +91 XXXXX XXXXX
                             </a>
-                        </p>
+                        </p> */}
                         <p className="mt-2 flex items-center">
                             ❓ <NavLink to="/contact" className="ml-2 hover:text-blue-600">
                                 Contact Us - Fill out our support form for inquiries.

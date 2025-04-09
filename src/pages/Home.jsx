@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { Search } from "../components/Search";
 import { useData } from "../context/data";
+import { useAuth } from "../context/auth";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { FaFeatherPointed } from "react-icons/fa6";
@@ -10,6 +11,7 @@ import { useMemo } from "react";
 import { DummyCourses } from "../UI/DummyCourses";
 
 export const Home = () => {
+    const { isLoggedIn } = useAuth();
     const { courseData } = useData();
 
     const courses = useMemo(() => [
@@ -29,16 +31,17 @@ export const Home = () => {
     ], []);
 
     const images = [
-        "carousel/picture1.png",
-        "carousel/picture2.svg",
+        // "carousel/picture1.png",
+        // "carousel/picture2.png",
         "carousel/picture3.png",
-        "carousel/picture4.png",
     ];
 
 
     return <main>
         <section>
-            <NavLink to="/courses/dashboard" className="absolute w-full z-20"><Search /></NavLink>
+            {
+                isLoggedIn ? <NavLink to="/courses/dashboard" className="absolute w-full z-20"><Search /></NavLink> : <NavLink to="/login" className="absolute w-full z-20"><Search /></NavLink>
+            }
 
             <Carousel
                 showThumbs={false}
@@ -79,53 +82,59 @@ export const Home = () => {
             </div>
         </section>
 
-        <section className="flex flex-col ~gap-8/20 ~p-8/20 bg-blue-400 ">
-            <h1 className="~text-lg/4xl text-primary font-semibold">Latest Courses</h1>
-            <div className="flex flex-col justify-center items-center sm:flex-row ~gap-8/20">
-                {
-                    courseData.length === 0 ?
-                        <DummyCourses/> : (
-                            <>
-                                <Link to={`/courses/${courseData[courseData.length - 1]._id}/view`} className="flex flex-col gap-4">
-                                    <div className="hover_effect ~w-48/80 ~h-36/52 border overflow-hidden rounded-xl">
-                                        <iframe src={courseData[courseData.length - 1].url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
-                                    </div>
-                                    <div className="flex flex-col gap-2 ~w-48/80">
-                                        <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 1].title}</p>
-                                        <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 1].description}</p>
-                                    </div>
-                                </Link>
+        {
+            isLoggedIn ? (
+                <>
+                    <section className="flex flex-col ~gap-8/20 ~p-8/20 bg-blue-400 ">
+                        <h1 className="~text-lg/4xl text-primary font-semibold">Latest Courses</h1>
+                        <div className="flex flex-col justify-center items-center sm:flex-row ~gap-8/20">
+                            {
+                                courseData.length === 0 ?
+                                    <DummyCourses /> : (
+                                        <>
+                                            <Link to={`/courses/${courseData[courseData.length - 1]._id}/view`} className="flex flex-col gap-4">
+                                                <div className="hover_effect ~w-48/80 ~h-36/52 border overflow-hidden rounded-xl">
+                                                    <iframe src={courseData[courseData.length - 1].url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
+                                                </div>
+                                                <div className="flex flex-col gap-2 ~w-48/80">
+                                                    <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 1].title}</p>
+                                                    <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 1].description}</p>
+                                                </div>
+                                            </Link>
 
-                                <Link to={`/courses/${courseData[courseData.length - 2]._id}/view`} className="flex flex-col gap-4">
-                                    <div className="hover_effect ~w-48/80 ~h-36/52 border overflow-hidden rounded-xl">
-                                        <iframe src={courseData[courseData.length - 2].url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
-                                    </div>
-                                    <div className="flex flex-col gap-2 ~w-48/80">
-                                        <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 2].title}</p>
-                                        <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 2].description}</p>
-                                    </div>
-                                </Link>
+                                            <Link to={`/courses/${courseData[courseData.length - 2]._id}/view`} className="flex flex-col gap-4">
+                                                <div className="hover_effect ~w-48/80 ~h-36/52 border overflow-hidden rounded-xl">
+                                                    <iframe src={courseData[courseData.length - 2].url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
+                                                </div>
+                                                <div className="flex flex-col gap-2 ~w-48/80">
+                                                    <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 2].title}</p>
+                                                    <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 2].description}</p>
+                                                </div>
+                                            </Link>
 
-                                <Link to={`/courses/${courseData[courseData.length - 3]._id}/view`} className="flex flex-col gap-4">
-                                    <div className="hover_effect ~w-48/80 ~h-36/52 border overflow-hidden rounded-xl">
-                                        <iframe src={courseData[courseData.length - 3].url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
-                                    </div>
-                                    <div className="flex flex-col gap-2 ~w-48/80 ">
-                                        <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 3].title}</p>
-                                        <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 3].description}</p>
-                                    </div>
-                                </Link>
-                            </>
-                        )
-                }
-            </div>
+                                            <Link to={`/courses/${courseData[courseData.length - 3]._id}/view`} className="flex flex-col gap-4">
+                                                <div className="hover_effect ~w-48/80 ~h-36/52 border overflow-hidden rounded-xl">
+                                                    <iframe src={courseData[courseData.length - 3].url} frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className="w-full h-full"></iframe>
+                                                </div>
+                                                <div className="flex flex-col gap-2 ~w-48/80 ">
+                                                    <p className="line-clamp-1 text-primary ~text-sm/xl font-semibold">{courseData[courseData.length - 3].title}</p>
+                                                    <p className="text-sm text-gray-200 line-clamp-2">{courseData[courseData.length - 3].description}</p>
+                                                </div>
+                                            </Link>
+                                        </>
+                                    )
+                            }
+                        </div>
 
-        </section>
-        <div className="flex justify-center p-6 pb-20">
-            <NavLink to="/courses/dashboard" className="mt-6 inline-block px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover_effect">
-                Explore Courses <FaArrowRight className="inline ml-2" />
-            </NavLink>
-        </div>
+                    </section>
+                    <div className="flex justify-center p-6 pb-20">
+                        <NavLink to="/courses/dashboard" className="mt-6 inline-block px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 hover_effect">
+                            Explore Courses <FaArrowRight className="inline ml-2" />
+                        </NavLink>
+                    </div>
+                </>
+            ) : null
+        }
 
         <section className="flex flex-col items-center justify-center text-center p-6">
             {/* FAQs */}
@@ -156,9 +165,13 @@ export const Home = () => {
             >
                 <h2 className="text-2xl font-semibold text-gray-900">Ready to Start Your Journey?</h2>
                 <p className="text-gray-600 mt-2">Join thousands of learners upgrading their skills on LearnContext.</p>
-                <NavLink to="/signup" className="mt-6 inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 hover_effect">
-                    Get Started Now <FaArrowRight className="inline ml-2" />
-                </NavLink>
+                {
+                    isLoggedIn ? <NavLink to="/courses/dashboard" className="mt-6 inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 hover_effect">
+                        Get Started Now <FaArrowRight className="inline ml-2" />
+                    </NavLink> : <NavLink to="/login" className="mt-6 inline-block px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 hover_effect">
+                        Get Started Now <FaArrowRight className="inline ml-2" />
+                    </NavLink>
+                }
             </motion.section>
         </section>
 
@@ -221,25 +234,28 @@ export const Home = () => {
             </div>
         </section>
 
-
-        <section className="py-12 bg-white text-center">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Career Roadmaps</h2>
-            <p className="text-gray-600 mb-8">Follow our structured learning paths to achieve your dream job.</p>
-            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-                {[
-                    { title: "Frontend Development", image: "/courses/basic_web.png" },
-                    { title: "Backend Development", image: "/courses/backend_node.png" },
-                    { title: "React Native", image: "/courses/react_native_dev.png" },
-                ].map((path, i) => (
-                    <Link key={i} to={`/courses/${path.title.toLowerCase().replace(" ", "-")}`} className="group rounded-xl overflow-hidden shadow hover:shadow-lg transition">
-                        <img src={path.image} alt={path.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
-                        <div className="p-4 bg-white">
-                            <h3 className="font-semibold text-lg text-gray-800">{path.title}</h3>
-                        </div>
-                    </Link>
-                ))}
-            </div>
-        </section>
+        {
+            isLoggedIn ? (
+                <section className="py-12 bg-white text-center">
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Career Roadmaps</h2>
+                    <p className="text-gray-600 mb-8">Follow our structured learning paths to achieve your dream job.</p>
+                    <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+                        {[
+                            { title: "Frontend Development", image: "/courses/basic_web.png" },
+                            { title: "Backend Development", image: "/courses/backend_node.png" },
+                            { title: "React Native", image: "/courses/react_native_dev.png" },
+                        ].map((path, i) => (
+                            <Link key={i} to={`/courses/${path.title.toLowerCase().replace(" ", "-")}`} className="group rounded-xl overflow-hidden shadow hover:shadow-lg transition">
+                                <img src={path.image} alt={path.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                                <div className="p-4 bg-white">
+                                    <h3 className="font-semibold text-lg text-gray-800">{path.title}</h3>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </section>
+            ) : null
+        }
 
     </main>
 }

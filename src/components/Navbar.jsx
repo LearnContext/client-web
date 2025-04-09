@@ -17,7 +17,9 @@ export const Navbar = () => {
   return (
     <>
       <NavLink to="/" style={getActivePage} className="flex gap-2 items-center"><IoHomeOutline />Home</NavLink>
-      <NavLink to="/courses/dashboard" style={getActivePage} className="flex gap-2 items-center "><FaLaptopCode />Courses</NavLink>
+      {
+        isLoggedIn ? <NavLink to="/courses/dashboard" style={getActivePage} className="flex gap-2 items-center "><FaLaptopCode />Courses</NavLink> : null
+      }
       <NavLink to="/contest" style={getActivePage} className="flex gap-2 items-center "><IoLayersOutline />Contest</NavLink>
       <NavLink to="/about" style={getActivePage} className="flex gap-2 items-center"><IoInformationCircleOutline />About</NavLink>
       {user.isAdmin ? <NavLink to="/admin/users" style={getActivePage} className="flex gap-2 items-center"><HiOutlineUser />Admin</NavLink> : null}

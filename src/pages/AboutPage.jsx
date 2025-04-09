@@ -1,26 +1,29 @@
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useAuth } from "../context/auth";
 
 export const AboutPage = () => {
+    const { isLoggedIn } = useAuth();
+
     return (
         <section className="bg-gray-100 py-16 px-6 md:px-16">
             <div className="max-w-6xl mx-auto text-center">
-                <motion.h2 
+                <motion.h2
                     className="text-4xl font-bold text-gray-900 mb-6 flex flex-col gap-2 justify-center"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <motion.img 
-                        src="/logo/LearnContext_dark.svg" 
-                        alt="LearnContext" 
-                        id="logo" 
+                    <motion.img
+                        src="/logo/LearnContext_dark.svg"
+                        alt="LearnContext"
+                        id="logo"
                         className="~w-32/40 hover_effect m-auto"
                         whileHover={{ scale: 1.1 }}
                     />
                     Welcome to <span className="text-blue-600">Learn<span className="text-green-500">Context</span></span>
                 </motion.h2>
-                <motion.p 
+                <motion.p
                     className="text-lg text-gray-700 max-w-3xl mx-auto mb-10"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -30,7 +33,7 @@ export const AboutPage = () => {
                 </motion.p>
 
                 {/* Key Features Section */}
-                <motion.div 
+                <motion.div
                     className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -44,8 +47,8 @@ export const AboutPage = () => {
                         { title: "🛠 Backend Development", desc: "Learn Node.js, Django, Flask, Spring Boot, GraphQL, and microservices to handle server-side logic." },
                         { title: "🚀 Programming Languages", desc: "Gain expertise in Python, JavaScript, Kotlin, Go, C, C++, Java, and more with hands-on coding exercises." }
                     ].map((feature, index) => (
-                        <motion.div 
-                            key={index} 
+                        <motion.div
+                            key={index}
                             className="bg-white shadow-lg p-6 rounded-xl"
                             whileHover={{ scale: 1.05 }}
                         >
@@ -69,7 +72,7 @@ export const AboutPage = () => {
                 </motion.div>
 
                 {/* Call to Action */}
-                <motion.div 
+                <motion.div
                     className="mt-16"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -79,16 +82,24 @@ export const AboutPage = () => {
                     <p className="text-lg text-gray-700 max-w-3xl mx-auto">
                         Join LearnContext and gain expertise in cutting-edge technologies. Choose from AI, web development, full-stack, mobile apps, and more! Start your journey towards a successful tech career today.
                     </p>
-                    <motion.div 
+                    
+                    <motion.div
                         className="mt-6"
                         whileHover={{ scale: 1.1 }}
                     >
-                        <NavLink
+                        {
+                            isLoggedIn ? <NavLink
                             to="/courses/playlist"
                             className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all"
                         >
                             Explore Courses
+                        </NavLink> : <NavLink
+                            to="/login"
+                            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all"
+                        >
+                            Explore Courses
                         </NavLink>
+                        }
                     </motion.div>
                 </motion.div>
             </div>
