@@ -1,8 +1,8 @@
 import { BsSearch } from "react-icons/bs";
-import { useData } from "../context/data";
+import { useAuth } from "../context/auth";
 
 export const Search = () => {
-    const { search, setSearch } = useData();
+    const { search, setSearch } = useAuth();
 
     return <div className="flex w-full justify-center ~p-4/8 absolute">
         <form className="border p-2 px-4 flex justify-between items-center gap-1 rounded w-full sm:w-3/5">

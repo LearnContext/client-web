@@ -1,11 +1,11 @@
 import { BsSearch } from "react-icons/bs";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import { IoCaretDownSharp, IoReload } from "react-icons/io5";
-import { useData } from "../../context/data";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
 export const ReactPlaylist = () => {
-    const { search, setSearch, searchData, courseData } = useData();
+    const { search, setSearch, searchData, courseData } = useAuth();
 
     const existVideo = courseData || searchData
     return <>

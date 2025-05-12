@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/auth";
-import { useData } from "../context/data";
 import { RxCross1 } from "react-icons/rx";
 import { GoArrowRight } from "react-icons/go";
 import axios from "axios";

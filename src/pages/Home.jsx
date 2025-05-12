@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
 import { Search } from "../components/Search";
-import { useData } from "../context/data";
 import { useAuth } from "../context/auth";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -11,8 +10,7 @@ import { useMemo } from "react";
 import { DummyCourses } from "../UI/DummyCourses";
 
 export const Home = () => {
-    const { isLoggedIn } = useAuth();
-    const { courseData } = useData();
+    const { isLoggedIn, courseData } = useAuth();
 
     const courses = useMemo(() => [
         { title: "Frontend Development", icon: <FaLaptopCode />, desc: "Learn HTML, CSS, JavaScript, React, and more to create stunning user interfaces." },
